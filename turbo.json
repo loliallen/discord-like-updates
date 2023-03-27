@@ -1,10 +1,27 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local"],
+  "globalDependencies": [
+    "**/.env.*local"
+  ],
+  "globalEnv": [
+    "DIST_ELECTRON",
+    "DIST",
+    "PUBLIC",
+    "VITE_DEV_SERVER_URL"
+  ],
   "pipeline": {
+    "build_windows": {
+      "dependsOn": [
+        "update#build"
+      ]
+    },
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "dist/**"
+      ]
     },
     "lint": {
       "outputs": []
